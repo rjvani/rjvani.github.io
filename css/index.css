@@ -9,23 +9,24 @@ body {
     height: 100%;
     font-family: "Titillium Web", sans-serif;
     position: relative;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #222;
 }
-div#main {
+#main {
     width: 100%;
     height: 100%;
     position: absolute;
 }
-img.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#main_content {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
-img#avatar {
-    height: 150px;
+.center {
+    display: block;
+    margin: auto;
+}
+#avatar {
     width: 150px;
     padding-bottom: 20px;
 }
@@ -40,4 +41,27 @@ h2 {
     font-size: 22px;
     font-weight: lighter;
     text-align: center;
+}
+.main_text {
+    color: #fff;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0;
+}
+ul li {
+    display: inline;
+}
+#links {
+    padding-top: 50px;
+}
+#links_table {
+    display: table;
+    margin: 0 auto;
+}
+.links_icon {
+    padding-left: 7px;
+    padding-right: 7px;
+    height: 60px;
 }
