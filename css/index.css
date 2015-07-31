@@ -15,6 +15,11 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
+    top: 0;
+    left: 0;
+}
+canvas {
+    position: absolute;
 }
 #main_content {
     margin: 0;
@@ -53,12 +58,12 @@ ul {
 ul li {
     display: inline;
 }
+li a:hover {
+    opacity: 0.8;
+}
 #links {
     padding-top: 50px;
-}
-#links_table {
-    display: table;
-    margin: 0 auto;
+    text-align: center;
 }
 .links_icon {
     padding-left: 7px;
