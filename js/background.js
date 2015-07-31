@@ -13,10 +13,16 @@ function main() {
     canvas.height = window.innerHeight;
     
     var area = canvas.width * canvas.height;
-    var factor = 6000;
+    var factor = 7000;
     var particles = [ ];
     var maxParticles = (area / factor);
     var diameterFactor = 2;
+    
+    function getDistance(x1, y1, x2, y2) {
+        var dx = x2 - x1;
+        var dy = y2 - y1;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
     
     function Particle() {
         this.visible = true;
@@ -32,8 +38,14 @@ function main() {
         
         update : function() {
             var pad = 0;
+            var maxVelocity = Math.sqrt(2);
             this.x += this.vx;
             this.y += this.vy;
+            // lower velocity
+            if (getDistance(0, 0, this.vx, this.vy) > maxVelocity) {
+                this.vx *= 0.95;
+                this.vy *= 0.95;
+            }
             // out of screen
             if (!((pad <= this.x && this.x < canvas.width - pad) && 
                   (pad <= this.y && this.y < canvas.height - pad))) {
@@ -93,6 +105,31 @@ function main() {
         canvas.height = window.innerHeight;
         area = canvas.width * canvas.height;
         maxParticles = (area / factor);
+    });
+    
+    $(window).click(function(event) {
+        var x = event.pageX;
+        var y = event.pageY;
+        
+        function nearClick(particle) {
+            var maxDistance = 200;
+            var distance = getDistance(particle.x, particle.y, x, y);
+            return distance < maxDistance;
+        }
+        
+        function moveParticle(particle) {
+            var factor = 10;
+            var vectorFactor = getDistance(particle.x, particle.y, x, y) / factor;
+            particle.vx = (particle.x - x) / vectorFactor;
+            particle.vy = (particle.y - y) / vectorFactor;
+        }
+        
+        // move particles near click
+        particles.forEach(function(particle) {
+            if (nearClick(particle)) {
+                moveParticle(particle);
+            } 
+        });
     });
     
     run();

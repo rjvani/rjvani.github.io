@@ -18,6 +18,14 @@ body {
     top: 0;
     left: 0;
 }
+.no_select {
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
 canvas {
     position: absolute;
 }
@@ -37,7 +45,7 @@ canvas {
 }
 h1 {
     margin: 0;
-    font-size: 48px;
+    font-size: 52px;
     font-weight: lighter;
     text-align: center;
 }
@@ -46,6 +54,7 @@ h2 {
     font-size: 22px;
     font-weight: lighter;
     text-align: center;
+    transform: translateY(-10px);
 }
 .main_text {
     color: #fff;
@@ -58,15 +67,21 @@ ul {
 ul li {
     display: inline;
 }
+a {
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}
 li a:hover {
-    opacity: 0.8;
+    opacity: 0.5;
 }
 #links {
-    padding-top: 50px;
+    padding-top: 10px;
     text-align: center;
 }
 .links_icon {
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
     height: 60px;
 }
