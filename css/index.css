@@ -1,90 +1,69 @@
-html {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-}
+*{ font-family: "Titillium Web", sans-serif; }
+
 body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: "Titillium Web", sans-serif;
-    position: relative;
-    background-color: #222;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
-#main {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+
+#intro-content {
+  min-height: 100vh;
+  background-color: #222;
+  padding: 40px;
+  color: #fff;
 }
-.no_select {
-    -webkit-touch-callout: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+
+#intro-image {
+  width: 130px;
+  height: 130px;
+  display: inline;
 }
-canvas {
-    position: absolute;
+
+.intro-text {
+  padding: 20px;
 }
-#main_content {
-    margin: 0;
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+
+.intro-text h1 {
+  font-weight: lighter;
+  font-size: 40px;
 }
-.center {
-    display: block;
-    margin: auto;
+
+.social {
+  padding-bottom: 30px;
 }
-#avatar {
-    width: 150px;
-    padding-bottom: 20px;
-}
-h1 {
-    margin: 0;
-    font-size: 52px;
-    font-weight: lighter;
-    text-align: center;
-}
-h2 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: lighter;
-    text-align: center;
-    transform: translateY(-10px);
-}
-.main_text {
-    color: #fff;
-}
+
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding-left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
 }
+
 ul li {
-    display: inline;
+  display: inline;
 }
+
+.links_icon {
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 60px;
+}
+
+#about-me {
+  padding-top: 20px;
+  font-size: 18px;
+}
+
 a {
-    -webkit-transition: opacity 0.2s;
-    -moz-transition: opacity 0.2s;
-    -o-transition: opacity 0.2s;
-    transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
 }
+
 li a:hover {
     opacity: 0.5;
 }
-#links {
-    padding-top: 10px;
-    text-align: center;
-}
-.links_icon {
-    padding-left: 5px;
-    padding-right: 5px;
-    height: 60px;
+
+.test {
+  color: #fff;
 }
