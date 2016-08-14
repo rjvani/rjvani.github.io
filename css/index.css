@@ -7,6 +7,8 @@ body {
 }
 
 #intro-content {
+  display: flex;
+  align-items: center;
   min-height: 100vh;
   background-color: #222;
   padding: 40px;
@@ -48,11 +50,6 @@ ul li {
   height: 60px;
 }
 
-#about-me {
-  padding-top: 20px;
-  font-size: 18px;
-}
-
 a {
   -webkit-transition: opacity 0.2s;
   -moz-transition: opacity 0.2s;
@@ -61,7 +58,7 @@ a {
 }
 
 li a:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .test {
