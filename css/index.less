@@ -1,0 +1,53 @@
+*{ font-family: "Titillium Web", sans-serif; }
+
+@background-color: #222;
+@avatar-size: 140px;
+@icon-size: 60px;
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: @background-color;
+
+  .content {
+    text-align: center;
+
+    .avatar {
+      width: @avatar-size;
+      border-radius: 12px;
+      padding: 7px;
+    }
+
+    .name {
+      font-size: 34px;
+      color: #fff;
+      padding-top: 10px;
+    }
+
+    .icon-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style-type: none;
+      padding-left: 0;
+
+      .links_icon {
+        height: @icon-size;
+        padding: 0 5px;
+        transition: 0.2s;
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
