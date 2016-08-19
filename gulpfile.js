@@ -4,8 +4,6 @@ var livereload = require('gulp-livereload');
 
 gulp.task('less', function() {
   return gulp.src('less/*.less')
-    .pipe(less())
-    .pipe(gulp.dest('css'))
     .pipe(livereload());
 });
 
