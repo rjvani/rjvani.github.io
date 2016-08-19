@@ -18,6 +18,7 @@
   "homepage": "https://rjvani.github.io/",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-watch-less": "^1.0.1"
+    "gulp-less": "^3.1.0",
+    "gulp-livereload": "^3.8.1"
   }
 }
