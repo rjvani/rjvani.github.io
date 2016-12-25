@@ -21,13 +21,13 @@ window.onload = function() {
   let particles = [ ];
 
   function Particle() {
-      this.visible = true;
-      this.x = Math.floor(Math.random() * canvas.width);
-      this.y = Math.floor(Math.random() * canvas.height);
-      this.vx = Math.random() - 0.5;
-      this.vy = (Math.random() * 0.7) + 0.1;
-      this.diameter = Math.random() * diameterFactor;
-      this.color = "rgba(255, 255, 255, 0.8)";
+    this.visible = true;
+    this.x = Math.floor(Math.random() * canvas.width);
+    this.y = Math.floor(Math.random() * canvas.height);
+    this.vx = Math.random() - 0.5;
+    this.vy = (Math.random() * 0.7) + 0.1;
+    this.diameter = Math.random() * diameterFactor;
+    this.color = "rgba(255, 255, 255, 0.8)";
   }
 
   Particle.prototype = {
