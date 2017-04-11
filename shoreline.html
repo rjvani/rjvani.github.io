@@ -27,7 +27,6 @@
     <script type="text/javascript" src="js/jquery.isotope.js"></script>
     <script type="text/javascript" src="js/wow.js"></script>
     <script type="text/javascript" src="js/classie.js"></script>
-    <script src="contactform/contactform.js"></script>
 
     <script src="https://use.fontawesome.com/d5dce959a6.js"></script>
 
@@ -44,7 +43,7 @@
     <header class="header" id="header"><!--header-start-->
       <div class="container">
         <h2 class="animated fadeInDown delay-07s">
-          Boost.py
+          CUDA AdaBoost with Different Learning Models
         </h2>
         <h3 class="animated fadeInDown delay-07s">
           15-418 (Spring 2017) Final Project
@@ -63,14 +62,74 @@
           <li><a href="#checkpoint">Checkpoint</a></li>
           <li><a href="#report">Final Report</a></li>
           <li><a href="#team">Team</a></li>
+          <li><a href="#references">References</a></li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa fa-bars"></i></a>
       </div>
     </nav><!--main-nav-end-->
 
     <section class="main-section" id="proposal"><!--main-section-start-->
-      <div class="container">
+      <div class="container container-proposal">
         <h2>Project Proposal</h2>
+        <h3>Summary</h3>
+        <p>
+          This project aims to use the NVIDIA CUDA framework to parallelize
+          and test performance of the AdaBoost algorithm.
+        </p>
+        <h3>Background</h3>
+        <p>
+          Adaptive Boosting, or AdaBoost, is a machine learning meta-algorithm
+          that is used to progressively build a strong classifier as a
+          linear-weighted combination of weak classifiers.
+
+          A lot of traditional machine learning problems suffer from a loss
+          in predictive power as dimensionality increases. Samples that
+          algorithms process can have an unknown number of features. These
+          features may be irrelevant or even slow down execution times, so
+          AdaBoost focuses on extracting the important features that help
+          a model's predictive power.
+        </p>
+        <h3>Challenges</h3>
+        <p>
+          The main challenge behind this project is AdaBoost itself. This
+          algorithm is generalizable to different learning models (i.e. the
+          weak classifiers). On top of achieving parallel speed-up, there
+          will need to be back-testing done for various combinations of
+          classifiers and tuning performance of how the framework updates.
+
+          Additionally, this project will aim to minimize overfitting in
+          the presence of noise.
+        </p>
+        <h3>Resources</h3>
+        <p>
+          No starter files will be used for this project. Everything will
+          be coded from scratch.
+
+          In terms of literature, I have no experience with implementing
+          Machine Learning algorithms or knowledge of common classifiers, so
+          I will be using a few papers to ramp up.
+        </p>
+        <h3>Goals</h3>
+        <p>
+          My goal is to achieve competitive speed-up to any reported parallel
+          performances for AdaBoost.
+        </p>
+        <h3>Platform</h3>
+        <p>
+          I'm choosing to use CUDA because a main component of this project is
+          abstracting a good way to manage a set of weak classifiers. CUDA
+          offers a simple and easy interface (of kernels) and management
+          of GPU threads to help parallelize each update cycle in this
+          algorithm.
+        </p>
+        <h3>Proposed Schedule</h3>
+        <ul>
+          <li>(4/18) Set up code-base with sequential implementation of one weak classifier.</li>
+          <li>(4/25) Implement at least two classifiers working in parallel.</li>
+          <li>(5/5)  Increase set of classifiers and collect performance data for benchmarking.</li>
+          <li>(5/10) Create API to use system.</li>
+          <li>(5/12) Finish up!</li>
+        </ul>
       </div>
     </section><!--main-section-end-->
 
@@ -136,12 +195,6 @@
           $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top - 102
           }, 1500,'easeInOutExpo');
-          /*
-          if you don't want to use the easing effects:
-          $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-          }, 1000);
-          */
           event.preventDefault();
         });
       })
