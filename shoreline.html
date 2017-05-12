@@ -62,8 +62,8 @@
       <div class="container">
         <ul class="main-nav">
           <li><a href="#proposal">Proposal</a></li>
-          <li><a href="#checkpoint">Checkpoint</a></li>
           <li><a href="#report">Final Report</a></li>
+          <li><a href="#checkpoint">Checkpoint</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#references">References</a></li>
         </ul>
@@ -73,18 +73,19 @@
 
     <section class="main-section" id="proposal"><!--main-section-start-->
       <div class="container container-proposal">
-        <h2>Project Proposal</h2>
+        <h2 id="report">Final Report</h2>
         <h3>Summary</h3>
         <p>
-          This project aims to perform machine learning boosting algorithms
-          on NVIDIA GPUs using the CUDA framework.
+          I implemented a framework that parallelizes adaptive
+          boosting with user-made classifiers using the CUDA framework.
         </p>
         <h3>Background</h3>
         <p>
           Adaptive Boosting, or AdaBoost, is a machine learning meta-algorithm
           that is used to progressively build a strong classifier as a
           linear-weighted combination of weak classifiers.
-
+        </p>
+        <p>
           A lot of traditional machine learning problems suffer from a loss
           in predictive power as dimensionality increases. Samples that
           algorithms process can have an unknown number of features. These
@@ -92,7 +93,72 @@
           AdaBoost focuses on extracting the important features that help
           a model's predictive power.
         </p>
-        <h3>Checkpoint</h3>
+        <p>
+          In general, a boosting's weighting can be expressed as follows
+        </p>
+        <p><img src="assets/img/boost_weight.svg"></p>
+        <p>
+          Each weak learner takes some object and classifies it. With each
+          added learner, all the learners have some predicted classification
+          for each data point in the training set. Each weak learner is
+          assigned some weighting to boost each learner's contribution.
+          This is generally expressed as follows
+        </p>
+        <p><img src="assets/img/weak_learners.svg"></p>
+        <p>
+          This algorithm is highly parallelizeable since each data point's
+          weight is independent of everything else in the set and each
+          weak learner is independent of each other. As discussed further
+          below, the CUDA framework was used to take advantage of this.
+        </p>
+        <h3>Approach</h3>
+        <h4>Software Design</h4>
+        <p>
+          Since I wanted to build a library for adaptive boosting, I wanted
+          to allow users to input their own sets of training data and define
+          their own custom classifiers. So, the main implementation consists
+          of a C++ class which is constructed with data objects and has
+          methods to add classifiers and print evaluation data.
+        </p>
+        <h4>Work Distribution</h4>
+        <p>
+          The parallelization from this problem comes from the fact that
+          the final weights of data points are orthogonal from each other and
+          classifiers are independent.
+        </p>
+        <p>
+          The first approach with the CUDA framework included exposing a
+          single function to sequentially add rule classifier functions. After
+          a user did this, corresponding CUDA blocks and threads were
+          spawned to parallelize weak classification across each data point.
+          There was some speedup noticed with this implementation, but
+          nothing significant.
+        </p>
+        <p>
+          The next approach including refactoring the API call to take in
+          multiple function calls. This way, blocks can be used to
+          parallelize work across each classifier to find corresponding weights
+          independently. Shared variables were also used to help aggregate
+          these weight coefficients.
+        </p>
+        <p>
+          I also realized I had a bunch of unnecessary synchronization
+          barriers. Removing unnecessary calls to __syncthreads() and
+          cudaDeviceSynchronize() increased speedup an incredible amount.
+        </p>
+        <h4>Further Optimizations</h4>
+        <p>
+          If I had more time on this project, I would try to optimize the
+          bottlenecks in my current implementation. After profiling my code,
+          I realized that most of the run-time was being spent in allocating
+          memory; a lot of the time was spent in cudaMalloc, cudaMemcpy, and
+          cudaFree.
+        </p>
+        <h3>Results</h3>
+          <img src="assets/img/speedup.png">
+        <p>
+        </p>
+        <h3 id="checkpoint">Checkpoint (4/25)</h3>
         <p>
           So far, I've been on track with my schedule. I have a sequential
           implementation of adaptive boosting done with basic classifiers. I'm
@@ -124,11 +190,6 @@
           In terms of literature, I have no experience with implementing
           Machine Learning algorithms or knowledge of common classifiers, so
           I will be using a few papers to ramp up.
-        </p>
-        <h3>Goals</h3>
-        <p>
-          My goal is to achieve competitive speed-up to any reported parallel
-          performances for AdaBoost.
         </p>
         <h3>Platform</h3>
         <p>
